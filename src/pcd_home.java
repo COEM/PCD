@@ -95,6 +95,7 @@ public class pcd_home extends javax.swing.JFrame {
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItem17 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -342,6 +343,10 @@ public class pcd_home extends javax.swing.JFrame {
         jMenuBar1.add(jMenu7);
 
         jMenu8.setText("Reduksi Noise");
+
+        jMenuItem17.setText("Filter Rata-rata");
+        jMenu8.add(jMenuItem17);
+
         jMenuBar1.add(jMenu8);
 
         setJMenuBar(jMenuBar1);
@@ -1346,6 +1351,7 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
