@@ -101,6 +101,10 @@ public class pcd_home extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
         jMenuItem16 = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
 
@@ -363,6 +367,31 @@ public class pcd_home extends javax.swing.JFrame {
             }
         });
         jMenu7.add(jMenuItem16);
+        jMenu7.add(jSeparator1);
+
+        jMenuItem18.setText("[JPG] Noise Uniform");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem18);
+
+        jMenuItem19.setText("[JPG] Noise Salt & Pepper");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem19);
+
+        jMenuItem20.setText("[JPG] Noise Speckel");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem20);
 
         jMenuBar1.add(jMenu7);
 
@@ -1386,6 +1415,132 @@ public class pcd_home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField4.getText().length() == 0) {
+           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
+        } else  {
+            image = new ImageIcon(ctrl.getGambar()).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
+            Graphics g = prosesImage.getGraphics();
+            g.drawImage(image, 0, 0, null);
+
+            for (int x = 0; x < size.width; x++) {
+                for (int y = 0; y < size.height; y++) {
+                    int RGB = prosesImage.getRGB(x, y);
+                    int alpha = (RGB << 24) & 0xFF;
+                    int red = (RGB >> 16) & 0xFF;
+                    int green = (RGB >> 8) & 0xFF;
+                    int blue = (RGB >> 0) & 0xFF;
+                    int avg = (red + green + blue) / 3;
+                    double r = Math.random();
+                    double p = Double.parseDouble(jTextField4.getText().toString());
+                    avg = (int) (avg + r * 256 * p);
+                    if (avg > 256) {
+                        avg = 255;
+                    }
+                    int gray = alpha | avg << 16 | avg << 8 | avg;
+                    prosesImage.setRGB(x, y, gray);
+                    static_size();
+                }
+            }
+             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+            try {
+                ImageIO.write(prosesImage, "jpg", new File("Noise Uniform.jpg"));
+            } catch (java.io.IOException ex) {
+                System.err.println(ex);
+            }
+            }
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField4.getText().length() == 0) {
+           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
+        } else {
+            image = new ImageIcon(ctrl.getGambar()).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            prosesImage = new BufferedImage(size.width , size.height , BufferedImage.TYPE_INT_RGB);
+            Graphics g = prosesImage.getGraphics();
+            g.drawImage(image, 0, 0,  null);
+
+            for (int x = 0; x < size.width ; x++) {
+                for (int y = 0; y < size.height ; y++) {
+                    int RGB = prosesImage.getRGB(x, y);
+                    int alpha = (RGB << 24) & 0xFF;
+                    int red = (RGB >> 16) & 0xFF;
+                    int green = (RGB >> 8) & 0xFF;
+                    int blue = (RGB >> 0) & 0xFF;
+                    int avg = (red + green + blue) / 3;
+                    double r = Math.random();
+                    double p = Double.parseDouble(jTextField4.getText());
+                    if (r < p) {
+                        avg = 255;
+                    }
+                    int gray = alpha | avg << 16 | avg << 8 | avg;
+                    prosesImage.setRGB(x, y, gray);
+                    static_size();
+                }
+            }
+            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+            try {
+                ImageIO.write(prosesImage, "jpg", new File("Noise Salt_Pepper.jpg"));
+            } catch (java.io.IOException ex) {
+                System.err.println(ex);
+            }
+        }
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField4.getText().length() == 0) {
+           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
+        } else {
+            image = new ImageIcon(ctrl.getGambar()).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
+            Graphics g = prosesImage.getGraphics();
+            g.drawImage(image, 0, 0, null);
+
+            for (int x = 0; x < size.width; x++) {
+                for (int y = 0; y < size.height; y++) {
+                    int RGB = prosesImage.getRGB(x, y);
+                    int alpha = (RGB << 24) & 0xFF;
+                    int red = (RGB >> 16) & 0xFF;
+                    int green = (RGB >> 8) & 0xFF;
+                    int blue = (RGB >> 0) & 0xFF;
+                    int avg = (red + green + blue) / 3;
+                    double r = Math.random();
+                    double p = Double.parseDouble(jTextField4.getText());
+                    if (r < p) {
+                        avg = 0;
+                    }
+                    int gray = alpha | avg << 16 | avg << 8 | avg;
+                    prosesImage.setRGB(x, y, gray);
+                    static_size();
+                }
+            }
+            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+            try {
+                ImageIO.write(prosesImage, "jpg", new File("Noise Speckel.jpg"));
+            } catch (java.io.IOException ex) {
+                System.err.println(ex);
+            }
+        }
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1600,7 +1755,10 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -1611,6 +1769,7 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollBar jScrollBar2;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
