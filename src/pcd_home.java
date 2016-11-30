@@ -3,6 +3,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -364,6 +367,11 @@ public class pcd_home extends javax.swing.JFrame {
         jMenu8.setText("Reduksi Noise");
 
         jMenuItem17.setText("Filter Rata-rata");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
         jMenu8.add(jMenuItem17);
 
         jMenuBar1.add(jMenu8);
@@ -1201,7 +1209,7 @@ public class pcd_home extends javax.swing.JFrame {
             }
              jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
             try {
-                ImageIO.write(prosesImage, "png", new File("Noise Uniform"));
+                ImageIO.write(prosesImage, "png", new File("Noise Uniform.png"));
             } catch (java.io.IOException ex) {
                 System.err.println(ex);
             }
@@ -1242,7 +1250,7 @@ public class pcd_home extends javax.swing.JFrame {
             }
             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
             try {
-                ImageIO.write(prosesImage, "png", new File("Noise Uniform"));
+                ImageIO.write(prosesImage, "png", new File("Noise Salt_Pepper.png"));
             } catch (java.io.IOException ex) {
                 System.err.println(ex);
             }
@@ -1283,12 +1291,16 @@ public class pcd_home extends javax.swing.JFrame {
             }
             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
             try {
-                ImageIO.write(prosesImage, "png", new File("Noise Uniform"));
+                ImageIO.write(prosesImage, "png", new File("Noise Speckel.png"));
             } catch (java.io.IOException ex) {
                 System.err.println(ex);
             }
         }
     }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
      * @param args the command line arguments
