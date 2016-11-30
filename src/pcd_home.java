@@ -70,6 +70,8 @@ public class pcd_home extends javax.swing.JFrame {
         jScrollBar2 = new javax.swing.JScrollBar();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -196,6 +198,8 @@ public class pcd_home extends javax.swing.JFrame {
                 jButton10ActionPerformed(evt);
             }
         });
+
+        jLabel6.setText("Noise :");
 
         jMenu1.setText("File");
 
@@ -332,12 +336,27 @@ public class pcd_home extends javax.swing.JFrame {
         jMenu7.setText("Noise");
 
         jMenuItem14.setText("Noise Uniform");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem14);
 
         jMenuItem15.setText("Noise Salt & Pepper");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem15);
 
         jMenuItem16.setText("Noise Speckel");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem16);
 
         jMenuBar1.add(jMenu7);
@@ -357,25 +376,31 @@ public class pcd_home extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(75, 75, 75)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(75, 75, 75)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel6)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -428,7 +453,10 @@ public class pcd_home extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jLabel1))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -1139,6 +1167,129 @@ public class pcd_home extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField4.getText().length() == 0) {
+           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
+        } else  {
+            image = new ImageIcon(ctrl.getGambar()).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
+            Graphics g = prosesImage.getGraphics();
+            g.drawImage(image, 0, 0, null);
+
+            for (int x = 0; x < size.width; x++) {
+                for (int y = 0; y < size.height; y++) {
+                    int RGB = prosesImage.getRGB(x, y);
+                    int alpha = (RGB << 24) & 0xFF;
+                    int red = (RGB >> 16) & 0xFF;
+                    int green = (RGB >> 8) & 0xFF;
+                    int blue = (RGB >> 0) & 0xFF;
+                    int avg = (red + green + blue) / 3;
+                    double r = Math.random();
+                    double p = Double.parseDouble(jTextField4.getText().toString());
+                    avg = (int) (avg + r * 256 * p);
+                    if (avg > 256) {
+                        avg = 255;
+                    }
+                    int gray = alpha | avg << 16 | avg << 8 | avg;
+                    prosesImage.setRGB(x, y, gray);
+                }
+            }
+             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+            try {
+                ImageIO.write(prosesImage, "png", new File("Noise Uniform"));
+            } catch (java.io.IOException ex) {
+                System.err.println(ex);
+            }
+            }
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField4.getText().length() == 0) {
+           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
+        } else {
+            image = new ImageIcon(ctrl.getGambar()).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            prosesImage = new BufferedImage(size.width , size.height , BufferedImage.TYPE_INT_RGB);
+            Graphics g = prosesImage.getGraphics();
+            g.drawImage(image, 0, 0,  null);
+
+            for (int x = 0; x < size.width ; x++) {
+                for (int y = 0; y < size.height ; y++) {
+                    int RGB = prosesImage.getRGB(x, y);
+                    int alpha = (RGB << 24) & 0xFF;
+                    int red = (RGB >> 16) & 0xFF;
+                    int green = (RGB >> 8) & 0xFF;
+                    int blue = (RGB >> 0) & 0xFF;
+                    int avg = (red + green + blue) / 3;
+                    double r = Math.random();
+                    double p = Double.parseDouble(jTextField4.getText());
+                    if (r < p) {
+                        avg = 255;
+                    }
+                    int gray = alpha | avg << 16 | avg << 8 | avg;
+                    prosesImage.setRGB(x, y, gray);
+                }
+            }
+            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+            try {
+                ImageIO.write(prosesImage, "png", new File("Noise Uniform"));
+            } catch (java.io.IOException ex) {
+                System.err.println(ex);
+            }
+        }
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+        // TODO add your handling code here:
+        if (jTextField4.getText().length() == 0) {
+           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
+        } else {
+            image = new ImageIcon(ctrl.getGambar()).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
+            Graphics g = prosesImage.getGraphics();
+            g.drawImage(image, 0, 0, null);
+
+            for (int x = 0; x < size.width; x++) {
+                for (int y = 0; y < size.height; y++) {
+                    int RGB = prosesImage.getRGB(x, y);
+                    int alpha = (RGB << 24) & 0xFF;
+                    int red = (RGB >> 16) & 0xFF;
+                    int green = (RGB >> 8) & 0xFF;
+                    int blue = (RGB >> 0) & 0xFF;
+                    int avg = (red + green + blue) / 3;
+                    double r = Math.random();
+                    double p = Double.parseDouble(jTextField4.getText());
+                    if (r < p) {
+                        avg = 0;
+                    }
+                    int gray = alpha | avg << 16 | avg << 8 | avg;
+                    prosesImage.setRGB(x, y, gray);
+                }
+            }
+            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+            try {
+                ImageIO.write(prosesImage, "png", new File("Noise Uniform"));
+            } catch (java.io.IOException ex) {
+                System.err.println(ex);
+            }
+        }
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1334,6 +1485,7 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1366,5 +1518,6 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
