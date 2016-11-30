@@ -75,6 +75,8 @@ public class pcd_home extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -408,7 +410,10 @@ public class pcd_home extends javax.swing.JFrame {
                         .addGap(31, 31, 31)
                         .addComponent(jLabel6)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField5)
+                            .addComponent(jTextField6)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -472,7 +477,9 @@ public class pcd_home extends javax.swing.JFrame {
                         .addComponent(jButton4)
                         .addComponent(jButton9))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel2)))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -480,7 +487,8 @@ public class pcd_home extends javax.swing.JFrame {
                     .addComponent(jButton6)
                     .addComponent(jButton7)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1205,6 +1213,7 @@ public class pcd_home extends javax.swing.JFrame {
                     }
                     int gray = alpha | avg << 16 | avg << 8 | avg;
                     prosesImage.setRGB(x, y, gray);
+                    static_size();
                 }
             }
              jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
@@ -1246,6 +1255,7 @@ public class pcd_home extends javax.swing.JFrame {
                     }
                     int gray = alpha | avg << 16 | avg << 8 | avg;
                     prosesImage.setRGB(x, y, gray);
+                    static_size();
                 }
             }
             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
@@ -1287,6 +1297,7 @@ public class pcd_home extends javax.swing.JFrame {
                     }
                     int gray = alpha | avg << 16 | avg << 8 | avg;
                     prosesImage.setRGB(x, y, gray);
+                    static_size();
                 }
             }
             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
@@ -1300,6 +1311,79 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
+        if (jTextField4.getText().length() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
+        } else {
+            image = new ImageIcon(ctrl.getGambar()).getImage();
+        size = new Dimension();
+        size.width = image.getWidth(null);
+        size.height = image.getHeight(null);
+        setPreferredSize(size);
+
+        int Sn = 0;
+        int avg = 0;
+        int Ss = 0;
+        int Sn2 = 0;
+        int Ss2 = 0;
+
+        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        prosesImage2 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        prosesImage3 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+
+        Graphics g = prosesImage.getGraphics();
+        g.drawImage(image, 0, 0, null);
+
+        for (int x = 0; x < size.width ; x++) {
+            for (int y = 0; y < size.height ; y++) {
+                int RGB = prosesImage.getRGB(x, y);
+                int alpha = (RGB << 24) & 0xFF;
+                int red = (RGB >> 16) & 0xFF;
+                int green = (RGB >> 8) & 0xFF;
+                int blue = (RGB >> 0) & 0xFF;
+                avg = (red + green + blue) / 3;
+                double r = Math.random();
+                double p = Double.parseDouble(jTextField4.getText());
+                int avg2 = (int) (avg + r * 256 * p);
+                if (avg2 > 256) {
+                    avg = 255;
+                }
+                int gray = alpha | avg2 << 16 | avg2 << 8 | avg2;
+                prosesImage2.setRGB(x, y, gray);
+                Sn = Sn + Math.abs(avg2 - avg);
+                Ss = Ss + Math.abs(avg);
+                static_size();
+            }
+        }
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+            
+        double snr = 10 * Math.log10(Ss / Sn);
+        jTextField5.setText(Double.toString(snr));
+
+        for (int v = 1; v <= size.height - 2; v++) {
+            for (int u = 1; u <= size.width - 2; u++) {
+                int sum = 0;
+                int temp = 0;
+                for (int j = -1; j <= 1; j++) {
+                    for (int i = -1; i <= 1; i++) {
+                        int RGB = prosesImage2.getRGB(u + i, v + j);
+                        int alpha = (RGB << 24) & 0xFF;
+                        int red = (RGB >> 16) & 0xFF;
+                        temp = alpha;
+                        sum = sum +red;
+                    }
+                }
+                int q = (int) Math.round(sum / 9.0);
+                int gray2 = temp | q << 16 | q << 8 | q;
+                prosesImage3.setRGB(u, v, gray2);
+                Sn2 = Sn2 + Math.abs(q - avg);
+            }
+        }
+        ctrl.set_noise_reduc(prosesImage3);
+        new ctrl().noise_reduc();
+        //image3.setIcon(new ImageIcon(prosesimage3));
+        double snr2 = 10*Math.log10(Ss/Sn2);
+        jTextField6.setText(Double.toString(snr2));
+        }
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     /**
@@ -1531,5 +1615,7 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
 }
