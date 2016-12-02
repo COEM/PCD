@@ -5,12 +5,12 @@
  */
 package job6;
 
-import job5.*;
-import job4.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.image.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -113,6 +113,15 @@ public class deteksi_tepi extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenu7 = new javax.swing.JMenu();
+        jMenuItem18 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
+        jMenuItem23 = new javax.swing.JMenuItem();
+        jMenuItem24 = new javax.swing.JMenuItem();
+        jMenuItem25 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -457,6 +466,74 @@ public class deteksi_tepi extends javax.swing.JFrame {
         jMenu6.add(jMenuItem17);
 
         jMenuBar1.add(jMenu6);
+
+        jMenu7.setText("Deteksi Tepi");
+
+        jMenuItem18.setText("Prewitte");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem18);
+
+        jMenuItem19.setText("Gausian 3x3");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem19);
+
+        jMenuItem20.setText("Sobel1 3x3");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem20);
+
+        jMenuItem21.setText("Prewitte2");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem21ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem21);
+
+        jMenuItem22.setText("Sobel2 3x3");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem22);
+
+        jMenuItem23.setText("Sobel3 3x3");
+        jMenuItem23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem23ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem23);
+
+        jMenuItem24.setText("Laplacian");
+        jMenuItem24.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem24ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem24);
+
+        jMenuItem25.setText("Robet");
+        jMenuItem25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem25ActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jMenuItem25);
+
+        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -1922,7 +1999,7 @@ public class deteksi_tepi extends javax.swing.JFrame {
                         int alpha = (RGB << 24) & 0xFF;
                         int red = (RGB >> 16) & 0xFF;
                         temp = alpha;
-                        sum = sum +red;
+                        sum = sum + red;
                     }
                 }
                 int q = (int) Math.round(sum / 9.0);
@@ -1941,9 +2018,354 @@ public class deteksi_tepi extends javax.swing.JFrame {
         zoom3.setEnabled(true);
         zoomdes3.setEnabled(true);
         image3.setIcon(new ImageIcon(prosesimage3));
-        double snr2 = 10*Math.log10(Ss/Sn2);
+        double snr2 = 10 * Math.log10(Ss / Sn2);
         jTextField6.setText(Double.toString(snr2));
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {
+                0, 0, -1, 0, 0,
+                0, -1, -2, -1, 0,
+                -1, -2, 16, -2, -1,
+                0, -1, -2, -1, 0,
+                0, 0, -1, 0, 0
+            };
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(5, 5, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {-1, 0, 1, -1, 0, 1, -1, 0, 1};
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(3, 3, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {0, 1, 0, 1, -4, 1, 0, 1, 0};
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(3, 3, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {-1, -1, -1, 0, 0, 0, 1, 1, 1};
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(3, 3, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {-1, -2, -1, 0, 0, 0, 1, 2, 1};
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(3, 3, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+    private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {-1, 0, 1, -2, 0, 2, -1, 0, 1};
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(5, 5, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_jMenuItem23ActionPerformed
+
+    private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {-1, -1, -1, -1, 8, -1, -1, -1, -1};
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(3, 3, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jMenuItem24ActionPerformed
+
+    private void jMenuItem25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem25ActionPerformed
+        // TODO add your handling code here:
+        BufferedImage bi = null;
+        try {
+            image2.setEnabled(true);
+            zoom2.setEnabled(true);
+            zoomdes2.setEnabled(true);
+            image = new ImageIcon(sumberGambar).getImage();
+            size = new Dimension();
+            size.width = image.getWidth(null);
+            size.height = image.getHeight(null);
+            setPreferredSize(size);
+
+            if (zoom2.getValue() == 1) {
+                zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            } else {
+                zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            }
+
+            prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+            Graphics g = prosesimage.getGraphics();
+            g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+            image1.setIcon(new ImageIcon(prosesimage));
+            bi = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g2 = bi.createGraphics();
+            g2.drawImage(image, null, null);
+            float[] edgeKernel = {-1,1};
+
+            BufferedImageOp edgeOp = new ConvolveOp(new Kernel(1, 2, edgeKernel),
+                    ConvolveOp.EDGE_NO_OP, null);
+
+            BufferedImage imagebuff3 = edgeOp.filter(bi, null);
+            image2.setIcon(new ImageIcon(imagebuff3));
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }//GEN-LAST:event_jMenuItem25ActionPerformed
 
     void drawHistogram() {
         BufferedImage test = null;
@@ -2129,6 +2551,7 @@ public class deteksi_tepi extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
@@ -2139,7 +2562,15 @@ public class deteksi_tepi extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
+    private javax.swing.JMenuItem jMenuItem23;
+    private javax.swing.JMenuItem jMenuItem24;
+    private javax.swing.JMenuItem jMenuItem25;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

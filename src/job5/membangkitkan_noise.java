@@ -1759,7 +1759,8 @@ public class membangkitkan_noise extends javax.swing.JFrame {
         }
         image2.setIcon(new ImageIcon(prosesimage));
         try {
-            ImageIO.write(prosesimage, "png", new File("Noise Uniform"));
+            ImageIO.write(prosesimage, "png", new File("Noise Uniform.png"));
+            ImageIO.write(prosesimage, "jpg", new File("Noise Uniform.jpg"));
         } catch (java.io.IOException ex) {
             System.err.println(ex);
         }
@@ -1805,7 +1806,8 @@ public class membangkitkan_noise extends javax.swing.JFrame {
         }
         image2.setIcon(new ImageIcon(prosesimage));
         try {
-            ImageIO.write(prosesimage, "png", new File("Noise Salt & Pepper"));
+            ImageIO.write(prosesimage, "png", new File("Noise Salt & Pepper.png"));
+            ImageIO.write(prosesimage, "jpg", new File("Noise Salt & Pepper.jpg"));
         } catch (java.io.IOException ex) {
             System.err.println(ex);
         }
@@ -1851,7 +1853,8 @@ public class membangkitkan_noise extends javax.swing.JFrame {
         }
         image2.setIcon(new ImageIcon(prosesimage));
         try {
-            ImageIO.write(prosesimage, "png", new File("Noise Salt & Pepper"));
+            ImageIO.write(prosesimage, "png", new File("Noise Speckle.png"));
+            ImageIO.write(prosesimage, "jpg", new File("Noise Speckle.jpg"));
         } catch (java.io.IOException ex) {
             System.err.println(ex);
         }
