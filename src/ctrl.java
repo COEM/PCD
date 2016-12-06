@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 public class ctrl {
     static String gambar;
     static BufferedImage prosesImage;
+    //static ctrl Gambar
     public static String getGambar() { 
         //method untuk mengambil string lokasi gambar
         return gambar; //memberikan nilai balik dari method getGambar
