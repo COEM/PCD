@@ -35,7 +35,8 @@ public class pcd_home extends javax.swing.JFrame {
     static BufferedImage prosesImage3;
     static BufferedImage prosesImage2;
     static ctrl Gambar;
-    static grayscale gs_process;
+    //static grayscale gs_process;
+    static pcd_process pcd;
     /**
      * Creates new form pcd_home
      */
@@ -545,8 +546,8 @@ public class pcd_home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        gs_process.rgb_to_gs_avg(null, Gambar.getGambar());
-        jLabel4.setIcon(new ImageIcon(new ImageIcon(gs_process.rgb_to_gs_avg(null, Gambar.getGambar())).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));      
+        //gs_process.rgb_to_gs_avg(null, Gambar.getGambar());
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd.get_grayscale()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

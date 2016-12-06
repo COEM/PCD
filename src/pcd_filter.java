@@ -1,4 +1,5 @@
 
+import com.sun.glass.ui.Size;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -15,21 +16,18 @@ import javax.swing.ImageIcon;
  *
  * @author cacing
  */
-public class grayscale {
-    static Image image;
-    static Dimension size;
+public class pcd_filter {
+    static Image image = new ImageIcon(ctrl.getGambar()).getImage();
+    static Dimension size = new Dimension();
     static BufferedImage prosesImage;
     static Graphics g;
     static ctrl Gambar;
     
-    public static BufferedImage rgb_to_gs_avg(BufferedImage gs,String pcd_gs){
-        image = new ImageIcon(pcd_gs).getImage();
-        size = new Dimension();
+    public static BufferedImage rgb_to_gs_avg(){
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
-        //setPreferredSize(size);  
         prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        Graphics g = prosesImage.getGraphics();
+        g = prosesImage.getGraphics();
         g.drawImage(image, 0, 0, null);
 
         for (int x = 0; x < size.width; x++) {
@@ -45,6 +43,8 @@ public class grayscale {
                 //static_size();
             }
         }
-        return gs = prosesImage;
+        return prosesImage;
     }
+    
+    
 }
