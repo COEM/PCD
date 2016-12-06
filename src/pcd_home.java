@@ -709,10 +709,7 @@ public class pcd_home extends javax.swing.JFrame {
             }
         //jLabel5.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel5.getWidth(), jLabel5.getHeight(), Image.SCALE_DEFAULT)));
         jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-        if ((jLabel4.getWidth() >= 200) && (jLabel5.getWidth() >= 200)) {
-            jLabel4.setSize(235, 164);
-            jLabel5.setSize(235, 164);
-        }
+        static_size();
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1694,7 +1691,7 @@ public class pcd_home extends javax.swing.JFrame {
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("gtk".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
