@@ -34,7 +34,7 @@ public class pcd_home extends javax.swing.JFrame {
     static BufferedImage prosesImage;
     static BufferedImage prosesImage3;
     static BufferedImage prosesImage2;
-    static ctrl Gambar;
+    static pcd_ctrl Gambar;
     //static grayscale gs_process;
     static pcd_process pcd;
     /**
@@ -528,20 +528,20 @@ public class pcd_home extends javax.swing.JFrame {
         int open = fc.showOpenDialog(jPanel2);
         //jika gambar dipilih maka, tampilkan gambar di jlabel 5
         if (open == JFileChooser.APPROVE_OPTION) {
-            ctrl.setGambar(fc.getSelectedFile().getPath());
-            jLabel5.setIcon(new ImageIcon(new ImageIcon(ctrl.getGambar()).getImage().getScaledInstance(jLabel5.getWidth(), jLabel5.getHeight(), Image.SCALE_DEFAULT))); 
+            pcd_ctrl.setGambar(fc.getSelectedFile().getPath());
+            jLabel5.setIcon(new ImageIcon(new ImageIcon(pcd_ctrl.getGambar()).getImage().getScaledInstance(jLabel5.getWidth(), jLabel5.getHeight(), Image.SCALE_DEFAULT))); 
         }
-        System.out.println(ctrl.getGambar());
+        System.out.println(pcd_ctrl.getGambar());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         int open = fc.showOpenDialog(jPanel2);
         if (open == JFileChooser.APPROVE_OPTION) {
             //mengirim variabel lokasi gambar dari kelas home ke kelas dua menggunakan method setGambar
-            ctrl.setGambar(fc.getSelectedFile().getPath());
+            pcd_ctrl.setGambar(fc.getSelectedFile().getPath());
             
             //memanggil methhod start yang ada di kelas 2
-            new ctrl().start();
+            new pcd_ctrl().start();
         }  
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -552,7 +552,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        image = new ImageIcon(ctrl.getGambar()).getImage();
+        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -586,7 +586,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        image = new ImageIcon(ctrl.getGambar()).getImage();
+        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -621,7 +621,7 @@ public class pcd_home extends javax.swing.JFrame {
         if (jTextField2.getText().length()==0) {
             JOptionPane.showMessageDialog(rootPane, "Masukan Nilai C");
         } else {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
+            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
             size = new Dimension();
             size.width = image.getWidth(null);
             size.height = image.getHeight(null);
@@ -657,7 +657,7 @@ public class pcd_home extends javax.swing.JFrame {
         if (jTextField1.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Threshold!");
         } else {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
+            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
             size = new Dimension();
             size.width = image.getWidth(null);
             size.height = image.getHeight(null);
@@ -727,7 +727,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        image = new ImageIcon(ctrl.getGambar()).getImage();
+        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -754,7 +754,7 @@ public class pcd_home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        image = new ImageIcon(ctrl.getGambar()).getImage();
+        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         int add = jScrollBar2.getValue();
         size = new Dimension();
         size.width = image.getWidth(null);
@@ -806,7 +806,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-         image = new ImageIcon(ctrl.getGambar()).getImage();
+         image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         int add = jScrollBar2.getValue();
         size = new Dimension();
         size.width = image.getWidth(null);
@@ -858,7 +858,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        image = new ImageIcon(ctrl.getGambar()).getImage();
+        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -906,7 +906,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
-        image = new ImageIcon(ctrl.getGambar()).getImage();
+        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -961,7 +961,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
-         image = new ImageIcon(ctrl.getGambar()).getImage();
+         image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -1016,7 +1016,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
-         image = new ImageIcon(ctrl.getGambar()).getImage();
+         image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -1072,7 +1072,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-         image = new ImageIcon(ctrl.getGambar()).getImage();
+         image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -1129,7 +1129,7 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         // TODO add your handling code here:
-        image = new ImageIcon(ctrl.getGambar()).getImage();
+        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -1160,12 +1160,12 @@ public class pcd_home extends javax.swing.JFrame {
             }
         }
         
-        for (int v = 1; v <= size.height - 2; v++) {
-            for (int u = 1; u <= size.width - 2; u++) {
+        for (int v = 1; v <= size.height - 4; v++) {
+            for (int u = 1; u <= size.width - 4; u++) {
                 int sum = 0;
                 int temp = 0;
-                for (int j = -1; j <= 1; j++) {
-                    for (int i = -1; i <= 1; i++) {
+                for (int j = -1; j <= 3; j++) {
+                    for (int i = -1; i <= 3; i++) {
                         int RGB = prosesImage.getRGB(u + i, v + j);
                         int alpha = (RGB << 24) & 0xFF;
                         int red = (RGB >> 16) & 0xFF;
@@ -1175,7 +1175,7 @@ public class pcd_home extends javax.swing.JFrame {
                         //System.out.println(filter[j + 1][i + 1]);
                     }
                 }
-                int q = (int) Math.round(sum);
+                int q = (int) Math.round(sum / 25.00);
                 int gray2 = temp | q << 16 | q << 8 | q;
                 prosesImage3.setRGB(u, v, gray2);
                 static_size();
@@ -1188,128 +1188,21 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
-        if (jTextField4.getText().length() == 0) {
-           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
-        } else  {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
-            size = new Dimension();
-            size.width = image.getWidth(null);
-            size.height = image.getHeight(null);
-            setPreferredSize(size);
-            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
-            Graphics g = prosesImage.getGraphics();
-            g.drawImage(image, 0, 0, null);
-
-            for (int x = 0; x < size.width; x++) {
-                for (int y = 0; y < size.height; y++) {
-                    int RGB = prosesImage.getRGB(x, y);
-                    int alpha = (RGB << 24) & 0xFF;
-                    int red = (RGB >> 16) & 0xFF;
-                    int green = (RGB >> 8) & 0xFF;
-                    int blue = (RGB >> 0) & 0xFF;
-                    int avg = (red + green + blue) / 3;
-                    double r = Math.random();
-                    double p = Double.parseDouble(jTextField4.getText().toString());
-                    avg = (int) (avg + r * 256 * p);
-                    if (avg > 256) {
-                        avg = 255;
-                    }
-                    int gray = alpha | avg << 16 | avg << 8 | avg;
-                    prosesImage.setRGB(x, y, gray);
-                    static_size();
-                }
-            }
-             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-            try {
-                ImageIO.write(prosesImage, "png", new File("Noise Uniform.png"));
-            } catch (java.io.IOException ex) {
-                System.err.println(ex);
-            }
-            }
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd.get_noise_uniform()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_Uniform.png");
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-        if (jTextField4.getText().length() == 0) {
-           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
-        } else {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
-            size = new Dimension();
-            size.width = image.getWidth(null);
-            size.height = image.getHeight(null);
-            setPreferredSize(size);
-
-            prosesImage = new BufferedImage(size.width , size.height , BufferedImage.TYPE_INT_RGB);
-            Graphics g = prosesImage.getGraphics();
-            g.drawImage(image, 0, 0,  null);
-
-            for (int x = 0; x < size.width ; x++) {
-                for (int y = 0; y < size.height ; y++) {
-                    int RGB = prosesImage.getRGB(x, y);
-                    int alpha = (RGB << 24) & 0xFF;
-                    int red = (RGB >> 16) & 0xFF;
-                    int green = (RGB >> 8) & 0xFF;
-                    int blue = (RGB >> 0) & 0xFF;
-                    int avg = (red + green + blue) / 3;
-                    double r = Math.random();
-                    double p = Double.parseDouble(jTextField4.getText());
-                    if (r < p) {
-                        avg = 255;
-                    }
-                    int gray = alpha | avg << 16 | avg << 8 | avg;
-                    prosesImage.setRGB(x, y, gray);
-                    static_size();
-                }
-            }
-            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-            try {
-                ImageIO.write(prosesImage, "png", new File("Noise Salt_Pepper.png"));
-            } catch (java.io.IOException ex) {
-                System.err.println(ex);
-            }
-        }
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd.get_noise_salt_pepper()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_Salt_Pepper.png");
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        // TODO add your handling code here:
-        if (jTextField4.getText().length() == 0) {
-           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
-        } else {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
-            size = new Dimension();
-            size.width = image.getWidth(null);
-            size.height = image.getHeight(null);
-            setPreferredSize(size);
-
-            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
-            Graphics g = prosesImage.getGraphics();
-            g.drawImage(image, 0, 0, null);
-
-            for (int x = 0; x < size.width; x++) {
-                for (int y = 0; y < size.height; y++) {
-                    int RGB = prosesImage.getRGB(x, y);
-                    int alpha = (RGB << 24) & 0xFF;
-                    int red = (RGB >> 16) & 0xFF;
-                    int green = (RGB >> 8) & 0xFF;
-                    int blue = (RGB >> 0) & 0xFF;
-                    int avg = (red + green + blue) / 3;
-                    double r = Math.random();
-                    double p = Double.parseDouble(jTextField4.getText());
-                    if (r < p) {
-                        avg = 0;
-                    }
-                    int gray = alpha | avg << 16 | avg << 8 | avg;
-                    prosesImage.setRGB(x, y, gray);
-                    static_size();
-                }
-            }
-            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-            try {
-                ImageIO.write(prosesImage, "png", new File("Noise Speckel.png"));
-            } catch (java.io.IOException ex) {
-                System.err.println(ex);
-            }
-        }
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_speckel()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_speckel.png");
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
@@ -1317,7 +1210,7 @@ public class pcd_home extends javax.swing.JFrame {
         if (jTextField4.getText().length() == 0) {
             JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
         } else {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
+            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
         size = new Dimension();
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -1381,8 +1274,8 @@ public class pcd_home extends javax.swing.JFrame {
                 Sn2 = Sn2 + Math.abs(q - avg);
             }
         }
-        ctrl.set_noise_reduc(prosesImage3);
-        new ctrl().noise_reduc();
+        pcd_ctrl.set_noise_reduc(prosesImage3);
+        new pcd_ctrl().noise_reduc();
         //image3.setIcon(new ImageIcon(prosesimage3));
         double snr2 = 10*Math.log10(Ss/Sn2);
         jTextField6.setText(Double.toString(snr2));
@@ -1394,7 +1287,7 @@ public class pcd_home extends javax.swing.JFrame {
         if (jTextField4.getText().length() == 0) {
            JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
         } else  {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
+            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
             size = new Dimension();
             size.width = image.getWidth(null);
             size.height = image.getHeight(null);
@@ -1436,7 +1329,7 @@ public class pcd_home extends javax.swing.JFrame {
         if (jTextField4.getText().length() == 0) {
            JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
         } else {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
+            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
             size = new Dimension();
             size.width = image.getWidth(null);
             size.height = image.getHeight(null);
@@ -1478,7 +1371,7 @@ public class pcd_home extends javax.swing.JFrame {
         if (jTextField4.getText().length() == 0) {
            JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
         } else {
-            image = new ImageIcon(ctrl.getGambar()).getImage();
+            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
             size = new Dimension();
             size.width = image.getWidth(null);
             size.height = image.getHeight(null);
@@ -1568,7 +1461,7 @@ public class pcd_home extends javax.swing.JFrame {
             frame.setSize(500, 350);
             frame.setVisible(true);
             frame.setLocation(380, 200);
-            frame.setTitle(ctrl.getGambar());
+            frame.setTitle(pcd_ctrl.getGambar());
             String status = frame.getTitle();
         } catch (Exception e) {
             System.out.println(e);
@@ -1578,7 +1471,7 @@ public class pcd_home extends javax.swing.JFrame {
     public void drawHistogram(){
         BufferedImage test2 = null ;
         try {
-            test2 = ImageIO.read(new File(ctrl.getGambar()));
+            test2 = ImageIO.read(new File(pcd_ctrl.getGambar()));
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -1622,7 +1515,7 @@ public class pcd_home extends javax.swing.JFrame {
             frame.setSize(500, 350);
             frame.setVisible(true);
             frame.setLocation(380, 200);
-            frame.setTitle(ctrl.getGambar());
+            frame.setTitle(pcd_ctrl.getGambar());
             String status = frame.getTitle();
         } catch (Exception e) {
             System.out.println(e);
@@ -1634,7 +1527,7 @@ public class pcd_home extends javax.swing.JFrame {
         if (jLabel5.getIcon()==null) {
             JOptionPane.showMessageDialog(rootPane, "Silahkan buka gambar terlebih dahulu!");
         }else{
-            image = new ImageIcon(ctrl.getGambar()).getImage();
+            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
             size = new Dimension();
             size.width = image.getWidth(null);
             size.height = image.getHeight(null);
