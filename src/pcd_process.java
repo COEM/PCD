@@ -21,9 +21,20 @@ public class pcd_process {
         return pcd_filter.noise_speckel();
     }
     
+    public static BufferedImage get_gs(double a,double b,double c){
+        return pcd_filter.rgb_to_gs(a, b, c);
+    }
     public static void saveImg_png(BufferedImage x, String name){
         try {
             ImageIO.write(x, "png", new File(name));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+    
+    public static void saveImg_jpg(BufferedImage x, String name){
+        try {
+            ImageIO.write(x, "jpg", new File(name));
         } catch (IOException e) {
             System.out.println(e);
         }

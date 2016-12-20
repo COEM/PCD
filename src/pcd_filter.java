@@ -31,6 +31,30 @@ public class pcd_filter {
         return pixel_pic ;
     }
     
+    public static BufferedImage rgb_to_gs(double rd, double gr, double bl){
+        size.width = image.getWidth(null);
+        size.height = image.getHeight(null);
+        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        g = prosesImage.getGraphics();
+        g.drawImage(image, 0, 0, null);
+
+        for (int i = 0; i < size.width; i++) {
+            for (int j = 0; j < size.height; j++) {
+                int RGB = prosesImage.getRGB(i, j);
+                int alpha = (RGB << 24) & 0xFF;
+                int red = (RGB >> 16) & 0xFF;
+                int green = (RGB >> 8) & 0xFF;
+                int blue = (RGB >>0) & 0xFF;
+                int avg = (int) ((red*rd) + (green * gr) + (blue * bl));
+                int gray = alpha | avg << 16 | avg << 8 | avg;
+                prosesImage.setRGB(i, j, gray);
+                //pixel_pic = 
+                //static_size();
+            }
+        }
+        return prosesImage;
+    }
+    
     public static BufferedImage rgb_to_gs_avg(){
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
@@ -136,7 +160,4 @@ public class pcd_filter {
         }
         return prosesImage;
     }
-    
-    
-    
 }

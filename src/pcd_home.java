@@ -701,28 +701,23 @@ public class pcd_home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu3ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        rgbtogs(0.5, 0.2, 0.3);  
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_gs(0.5, 0.2, 0.3)).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        rgbtogs(0.2, 0.5, 0.3);
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_gs(0.2, 0.5, 0.3)).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        rgbtogs(0.2, 0.3, 0.5);
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_gs(0.2, 0.3, 0.5)).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-        rgbtogs(0.5, 0.5, 0);
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_gs(0.5, 0.5, 0)).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-        rgbtogs(0.5, 0, 0.5);
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_gs(0.5, 0, 0.5)).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1138,13 +1133,6 @@ public class pcd_home extends javax.swing.JFrame {
         prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
         Graphics g = prosesImage.getGraphics();
         g.drawImage(image, 0, 0, null);
-        double filter[][] = {
-            {0.085, 0.050, 0.065, 0.050, 0.085},
-            {0.050, 0.075, 0.125, 0.075, 0.050},
-            {0.065, 0.125, 0.200, 0.125, 0.065},
-            {0.050, 0.075, 0.125, 0.075, 0.050},
-            {0.085, 0.050, 0.065, 0.050, 0.085}
-        };
         
         for (int x = 0; x < size.width; x++) {
             for (int y = 0; y < size.height; y++) {
@@ -1170,12 +1158,10 @@ public class pcd_home extends javax.swing.JFrame {
                         int alpha = (RGB << 24) & 0xFF;
                         int red = (RGB >> 16) & 0xFF;
                         temp = alpha;
-                        double c = filter[j + 1][i + 1];
-                        sum =(int) (sum + c * red);
-                        //System.out.println(filter[j + 1][i + 1]);
+                        sum = sum + red;
                     }
                 }
-                int q = (int) Math.round(sum / 25.00);
+                int q = (int) Math.round(sum / 25.0);
                 int gray2 = temp | q << 16 | q << 8 | q;
                 prosesImage3.setRGB(u, v, gray2);
                 static_size();
@@ -1189,13 +1175,13 @@ public class pcd_home extends javax.swing.JFrame {
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         // TODO add your handling code here:
         pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
-        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd.get_noise_uniform()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_uniform()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
         pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_Uniform.png");
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
-        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd.get_noise_salt_pepper()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_salt_pepper()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
         pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_Salt_Pepper.png");
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
@@ -1284,128 +1270,23 @@ public class pcd_home extends javax.swing.JFrame {
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
-        if (jTextField4.getText().length() == 0) {
-           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
-        } else  {
-            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
-            size = new Dimension();
-            size.width = image.getWidth(null);
-            size.height = image.getHeight(null);
-            setPreferredSize(size);
-            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
-            Graphics g = prosesImage.getGraphics();
-            g.drawImage(image, 0, 0, null);
-
-            for (int x = 0; x < size.width; x++) {
-                for (int y = 0; y < size.height; y++) {
-                    int RGB = prosesImage.getRGB(x, y);
-                    int alpha = (RGB << 24) & 0xFF;
-                    int red = (RGB >> 16) & 0xFF;
-                    int green = (RGB >> 8) & 0xFF;
-                    int blue = (RGB >> 0) & 0xFF;
-                    int avg = (red + green + blue) / 3;
-                    double r = Math.random();
-                    double p = Double.parseDouble(jTextField4.getText().toString());
-                    avg = (int) (avg + r * 256 * p);
-                    if (avg > 256) {
-                        avg = 255;
-                    }
-                    int gray = alpha | avg << 16 | avg << 8 | avg;
-                    prosesImage.setRGB(x, y, gray);
-                    static_size();
-                }
-            }
-             jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-            try {
-                ImageIO.write(prosesImage, "jpg", new File("Noise Uniform.jpg"));
-            } catch (java.io.IOException ex) {
-                System.err.println(ex);
-            }
-            }
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_uniform()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        pcd_process.saveImg_jpg(pcd_filter.prosesImage, "Noise_Uniform.jpg");
     }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
-        if (jTextField4.getText().length() == 0) {
-           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
-        } else {
-            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
-            size = new Dimension();
-            size.width = image.getWidth(null);
-            size.height = image.getHeight(null);
-            setPreferredSize(size);
-
-            prosesImage = new BufferedImage(size.width , size.height , BufferedImage.TYPE_INT_RGB);
-            Graphics g = prosesImage.getGraphics();
-            g.drawImage(image, 0, 0,  null);
-
-            for (int x = 0; x < size.width ; x++) {
-                for (int y = 0; y < size.height ; y++) {
-                    int RGB = prosesImage.getRGB(x, y);
-                    int alpha = (RGB << 24) & 0xFF;
-                    int red = (RGB >> 16) & 0xFF;
-                    int green = (RGB >> 8) & 0xFF;
-                    int blue = (RGB >> 0) & 0xFF;
-                    int avg = (red + green + blue) / 3;
-                    double r = Math.random();
-                    double p = Double.parseDouble(jTextField4.getText());
-                    if (r < p) {
-                        avg = 255;
-                    }
-                    int gray = alpha | avg << 16 | avg << 8 | avg;
-                    prosesImage.setRGB(x, y, gray);
-                    static_size();
-                }
-            }
-            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-            try {
-                ImageIO.write(prosesImage, "jpg", new File("Noise Salt_Pepper.jpg"));
-            } catch (java.io.IOException ex) {
-                System.err.println(ex);
-            }
-        }
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_salt_pepper()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        pcd_process.saveImg_jpg(pcd_filter.prosesImage, "Noise_Salt_Pepper.jpg");
     }//GEN-LAST:event_jMenuItem19ActionPerformed
 
     private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
-        if (jTextField4.getText().length() == 0) {
-           JOptionPane.showMessageDialog(rootPane, "Masukkan Nilai Noise!");
-        } else {
-            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
-            size = new Dimension();
-            size.width = image.getWidth(null);
-            size.height = image.getHeight(null);
-            setPreferredSize(size);
-
-            prosesImage = new BufferedImage(size.width , size.height, BufferedImage.TYPE_INT_RGB);
-            Graphics g = prosesImage.getGraphics();
-            g.drawImage(image, 0, 0, null);
-
-            for (int x = 0; x < size.width; x++) {
-                for (int y = 0; y < size.height; y++) {
-                    int RGB = prosesImage.getRGB(x, y);
-                    int alpha = (RGB << 24) & 0xFF;
-                    int red = (RGB >> 16) & 0xFF;
-                    int green = (RGB >> 8) & 0xFF;
-                    int blue = (RGB >> 0) & 0xFF;
-                    int avg = (red + green + blue) / 3;
-                    double r = Math.random();
-                    double p = Double.parseDouble(jTextField4.getText());
-                    if (r < p) {
-                        avg = 0;
-                    }
-                    int gray = alpha | avg << 16 | avg << 8 | avg;
-                    prosesImage.setRGB(x, y, gray);
-                    static_size();
-                }
-            }
-            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-            try {
-                ImageIO.write(prosesImage, "jpg", new File("Noise Speckel.jpg"));
-            } catch (java.io.IOException ex) {
-                System.err.println(ex);
-            }
-        }
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_speckel()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        pcd_process.saveImg_jpg(pcd_filter.prosesImage, "Noise_speckel.jpg");
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     /**
@@ -1522,36 +1403,6 @@ public class pcd_home extends javax.swing.JFrame {
         }
     }
     
-    public void rgbtogs(double r_in, double g_in, double b_in){
-         // TODO add your handling code here:
-        if (jLabel5.getIcon()==null) {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan buka gambar terlebih dahulu!");
-        }else{
-            image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
-            size = new Dimension();
-            size.width = image.getWidth(null);
-            size.height = image.getHeight(null);
-            setPreferredSize(size);  
-            prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-            Graphics g = prosesImage.getGraphics();
-            g.drawImage(image, 0, 0, null);
-
-            for (int x = 0; x < size.width; x++) {
-                for (int y = 0; y < size.height; y++) {
-                    int RGB = prosesImage.getRGB(x, y);
-                    int alpha = (RGB << 24) & 0xFF;
-                    int red = (RGB >> 16) & 0xFF;
-                    int green = (RGB >> 8) & 0xFF;
-                    int blue = (RGB >>0) & 0xFF;
-                    int avg =(int) ((red*r_in) + (green * g_in) + (blue * b_in));
-                    int gray = alpha | avg << 16 | avg << 8 | avg;
-                    prosesImage.setRGB(x, y, gray);
-                    static_size();
-                }
-            }
-            jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
-        }
-    }
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
