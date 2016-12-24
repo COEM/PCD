@@ -23,7 +23,7 @@ public class pcd_filter {
     static Image image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
     static Dimension size = new Dimension();
     static int pixel_pic[][] = null;
-    static BufferedImage prosesImage;
+    static BufferedImage prosesImage,prosesImage3;
     static Graphics g;
     static pcd_ctrl Gambar;
     
@@ -50,6 +50,52 @@ public class pcd_filter {
                 prosesImage.setRGB(i, j, gray);
                 //pixel_pic = 
                 //static_size();
+            }
+        }
+        return prosesImage;
+    }
+    
+    public static BufferedImage rgb_gs_auto(){
+        size.width = image.getWidth(null);
+        size.height = image.getHeight(null);
+        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        prosesImage3 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        g = prosesImage.getGraphics();
+        g.drawImage(image, 0, 0, null);
+         for (int x = 0; x < size.width; x++) {
+            for (int y = 0; y < size.height; y++) {
+                int RGB = prosesImage.getRGB(x, y);
+                int alpha = (RGB << 24) & 0xFF;
+                int red = (RGB >> 16) >> 0xFF;
+                int green = (RGB >> 8) & 0xFF;
+                int blue = (RGB >>0) & 0xFF;
+                int avg = (red + green + blue) / 3;
+                int gray = alpha | avg << 16 | avg << 8 | avg;
+                prosesImage.setRGB(x, y, gray);
+            }
+        }
+        return prosesImage;
+    }
+    
+    public static BufferedImage rgb_to_inv(){
+        size.width = image.getWidth(null);
+        size.height = image.getHeight(null);
+        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        prosesImage3 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        g = prosesImage.getGraphics();
+        g.drawImage(image, 0, 0, null);
+         for (int x = 0; x < size.width; x++) {
+            for (int y = 0; y < size.height; y++) {
+                int RGB = prosesImage.getRGB(x, y);
+                int alpha = (RGB << 24) & 0xFF;
+                int red = (RGB >> 16) >> 0xFF;
+                int green = (RGB >> 8) & 0xFF;
+                int blue = (RGB >>0) & 0xFF;
+                int avg = (red + green + blue) / 3;
+                int gray = alpha | avg << 16 | avg << 8 | avg;
+                int inv = 255 - gray;
+                int invpx = alpha | inv << 16 | inv << 8 | inv;
+                prosesImage.setRGB(x, y, invpx);
             }
         }
         return prosesImage;

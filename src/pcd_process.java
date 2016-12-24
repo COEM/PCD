@@ -21,6 +21,13 @@ public class pcd_process {
         return pcd_filter.noise_speckel();
     }
     
+    public static BufferedImage get_gs_auto(){
+        return pcd_filter.rgb_gs_auto();
+    }
+    
+    public static BufferedImage get_inv(){
+        return pcd_filter.rgb_to_inv();
+    }
     public static BufferedImage get_gs(double a,double b,double c){
         return pcd_filter.rgb_to_gs(a, b, c);
     }

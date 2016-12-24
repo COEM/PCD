@@ -18,12 +18,6 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Cacing
@@ -41,7 +35,6 @@ public class pcd_home extends javax.swing.JFrame {
      * Creates new form pcd_home
      */
     public pcd_home() {
-        
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -464,14 +457,13 @@ public class pcd_home extends javax.swing.JFrame {
                                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)))
+                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -585,35 +577,9 @@ public class pcd_home extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        image = new ImageIcon(pcd_ctrl.getGambar()).getImage();
-        size = new Dimension();
-        size.width = image.getWidth(null);
-        size.height = image.getHeight(null);
-        setPreferredSize(size);  
-        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        prosesImage3 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        Graphics g = prosesImage.getGraphics();
-        g.drawImage(image, 0, 0, null);
-        
-        for (int x = 0; x < size.width; x++) {
-            for (int y = 0; y < size.height; y++) {
-                int RGB = prosesImage.getRGB(x, y);
-                int alpha = (RGB << 24) & 0xFF;
-                int red = (RGB >> 16) >> 0xFF;
-                int green = (RGB >> 8) & 0xFF;
-                int blue = (RGB >>0) & 0xFF;
-                int avg = (red + green + blue) / 3;
-                int gray = alpha | avg << 16 | avg << 8 | avg;
-                prosesImage.setRGB(x, y, gray);
-                int inv = 255 - gray;
-                int invpx = alpha | inv << 16 | inv << 8 | inv;
-                prosesImage3.setRGB(x, y, invpx);
-                static_size();
-            }
-        }
-        jLabel5.setIcon(new ImageIcon(new ImageIcon(prosesImage).getImage().getScaledInstance(jLabel5.getWidth(), jLabel5.getHeight(), Image.SCALE_DEFAULT)));
-        jLabel4.setIcon(new ImageIcon(new ImageIcon(prosesImage3).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        jLabel5.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_gs_auto()).getImage().getScaledInstance(jLabel5.getWidth(), jLabel5.getHeight(), Image.SCALE_DEFAULT)));
+        jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_inv()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
+        static_size();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1177,18 +1143,21 @@ public class pcd_home extends javax.swing.JFrame {
         pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
         jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_uniform()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
         pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_Uniform.png");
+        static_size();
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
         jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_salt_pepper()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
         pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_Salt_Pepper.png");
+        static_size();
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
         jLabel4.setIcon(new ImageIcon(new ImageIcon(pcd_process.get_noise_speckel()).getImage().getScaledInstance(jLabel4.getWidth(), jLabel4.getHeight(), Image.SCALE_DEFAULT)));
         pcd_process.saveImg_png(pcd_filter.prosesImage, "Noise_speckel.png");
+        static_size();
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
