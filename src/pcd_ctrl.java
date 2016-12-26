@@ -11,21 +11,25 @@ public class pcd_ctrl {
     static String gambar;
     static BufferedImage prosesImage;
     static double noise;
-    //static ctrl Gambar
+    static int c;
     public static String getGambar() { 
-        //method untuk mengambil string lokasi gambar
-        return gambar; //memberikan nilai balik dari method getGambar
+        return gambar;
     }
     
     public static BufferedImage get_noise_reduc() { 
-        //method untuk mengambil string lokasi gambar
         return prosesImage;
     }
     
      public static BufferedImage set_noise_reduc(BufferedImage x) { 
-        //method untuk mengambil string lokasi gambar
         return prosesImage = x;
     }
+     
+    public static int setC(int x){
+        return c = x;
+    }
+    public static int getC(){
+        return c;
+    } 
      
     public static double getNoise(){
         return noise;
@@ -36,25 +40,22 @@ public class pcd_ctrl {
     }
     
     public static String setGambar(String x) {
-        //method untuk mengatur string lokasi gambar
-        return gambar = x; //memberikan nilai balik dari method setGambar
+        return gambar = x; 
     }
     public void start() {
         if (gambar==null) {
            // 
         } else {
-            //Menampilkan gambar di frame lain
-            JFrame f=new JFrame("Form Image 2"); //membuat jframe baru
-            JLabel l=new JLabel(); //membuat label baru
-            l.setSize(400, 400); //mengatur ukuran labael
+            JFrame f=new JFrame("Form Image 2"); 
+            JLabel l=new JLabel(); 
+            l.setSize(400, 400); 
             
-            //memasukkan gambar ke dalam label
             l.setIcon(new ImageIcon(new ImageIcon(getGambar()).getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_SMOOTH)));
             f.add(l); 
             
-            f.setSize(400,400); //mengatur ukutan frame
-            f.setVisible(true);  //menampilkan frame lain
-            f.setLocationRelativeTo(null);// mengatur posisi agar ke tengah
+            f.setSize(400,400);
+            f.setVisible(true);
+            f.setLocationRelativeTo(null);
         }
     }
     
@@ -62,18 +63,16 @@ public class pcd_ctrl {
         if (gambar==null) {
            // 
         } else {
-            //Menampilkan gambar di frame lain
-            JFrame f=new JFrame("Form Image Noise Reduc"); //membuat jframe baru
-            JLabel l=new JLabel(); //membuat label baru
-            l.setSize(370, 270); //mengatur ukuran labael
+            JFrame f=new JFrame("Form Image Noise Reduc"); 
+            JLabel l=new JLabel(); 
+            l.setSize(370, 270); 
             
-            //memasukkan gambar ke dalam label
             l.setIcon(new ImageIcon(new ImageIcon(get_noise_reduc()).getImage().getScaledInstance(l.getWidth(), l.getHeight(), Image.SCALE_SMOOTH)));
             f.add(l); 
             
-            f.setSize(385,400); //mengatur ukutan frame
-            f.setVisible(true);  //menampilkan frame lain
-            f.setLocationRelativeTo(null);// mengatur posisi agar ke tengah
+            f.setSize(385,400);
+            f.setVisible(true);
+            f.setLocationRelativeTo(null);
         }
     }
 }

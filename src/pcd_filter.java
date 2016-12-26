@@ -7,13 +7,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-//import static pcd_home.prosesImage;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -26,7 +19,6 @@ public class pcd_filter {
     static BufferedImage prosesImage,prosesImage3;
     static Graphics g;
     static pcd_ctrl Gambar;
-    
     public static int[][] read_pixel_citra(){
         return pixel_pic ;
     }
@@ -37,7 +29,6 @@ public class pcd_filter {
         prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
         g = prosesImage.getGraphics();
         g.drawImage(image, 0, 0, null);
-
         for (int i = 0; i < size.width; i++) {
             for (int j = 0; j < size.height; j++) {
                 int RGB = prosesImage.getRGB(i, j);
@@ -48,8 +39,6 @@ public class pcd_filter {
                 int avg = (int) ((red*rd) + (green * gr) + (blue * bl));
                 int gray = alpha | avg << 16 | avg << 8 | avg;
                 prosesImage.setRGB(i, j, gray);
-                //pixel_pic = 
-                //static_size();
             }
         }
         return prosesImage;
@@ -101,13 +90,61 @@ public class pcd_filter {
         return prosesImage;
     }
     
+    public static BufferedImage rgb_to_bin(){
+        size.width = image.getWidth(null);
+        size.height = image.getHeight(null);
+        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        Graphics g = prosesImage.getGraphics();
+        g.drawImage(image, 0, 0, null);
+        for (int x = 0; x < size.width; x++) {
+            for (int y = 0; y < size.height; y++) {
+                int RGB = prosesImage.getRGB(x, y);
+                int alpha = (RGB << 24) & 0xFF;
+                int red = (RGB >> 16) >> 0xFF;
+                int green = (RGB >> 8) & 0xFF;
+                int blue = (RGB >>0) & 0xFF;
+                int avg = (red + green + blue) / 3;
+                int gray = alpha | avg << 16 | avg << 8 | avg;
+                if (avg < 128) {
+                    gray = 0;
+                } else if(avg > 128) {
+                    gray = 255;
+                }
+                int binergray = gray + (gray << 8) + (gray << 16);
+                prosesImage.setRGB(x, y, binergray);
+            }
+        }
+        return prosesImage;
+    }
+    
+    public static BufferedImage rgb_to_inv_log(){
+        size.width = image.getWidth(null);
+        size.height = image.getHeight(null);
+        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
+        Graphics g = prosesImage.getGraphics();
+        g.drawImage(image, 0, 0, null);
+        for (int x = 0; x < size.width; x++) {
+                for (int y = 0; y < size.height; y++) {
+                    int RGB = prosesImage.getRGB(x, y);
+                    int alpha = (RGB << 24) & 0xFF;
+                    int red = (RGB >> 16) >> 0xFF;
+                    int green = (RGB >> 8) & 0xFF;
+                    int blue = (RGB >>0) & 0xFF;
+                    int avg = (red + green + blue) / 3;
+                    int inv = (int) (pcd_ctrl.getC() * Math.log10(255 - avg + 1));
+                    int invpx = alpha | inv << 16 | inv << 8 | inv;
+                    prosesImage.setRGB(x, y, invpx);
+                }
+            }
+        return prosesImage;
+    }
+    
     public static BufferedImage rgb_to_gs_avg(){
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
         prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
         g = prosesImage.getGraphics();
         g.drawImage(image, 0, 0, null);
-
         for (int x = 0; x < size.width; x++) {
             for (int y = 0; y < size.height; y++) {
                 int RGB = prosesImage.getRGB(x, y);
@@ -118,8 +155,6 @@ public class pcd_filter {
                 int avg = (red + green + blue)/3;
                 int gray = alpha | avg << 16 | avg << 8 | avg;
                 prosesImage.setRGB(x, y, gray);
-                //pixel_pic = 
-                //static_size();
             }
         }
         return prosesImage;
@@ -182,7 +217,6 @@ public class pcd_filter {
     public static BufferedImage noise_speckel(){
         size.width = image.getWidth(null);
         size.height = image.getHeight(null);
-        
         prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
         Graphics g = prosesImage.getGraphics();
         g.drawImage(image, 0, 0, null);
