@@ -66,6 +66,8 @@ public class pcd_home extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -205,6 +207,10 @@ public class pcd_home extends javax.swing.JFrame {
         jTextField6.setFont(new java.awt.Font("Trebuchet MS", 0, 11)); // NOI18N
 
         jLabel7.setText("jLabel7");
+
+        jLabel8.setText("SNR");
+
+        jLabel9.setText("SNR2");
 
         jMenu1.setText("File");
 
@@ -433,7 +439,10 @@ public class pcd_home extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(31, 31, 31)
-                        .addComponent(jLabel6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -505,7 +514,8 @@ public class pcd_home extends javax.swing.JFrame {
                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))))
                 .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10)
@@ -513,7 +523,8 @@ public class pcd_home extends javax.swing.JFrame {
                     .addComponent(jButton7)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1219,25 +1230,25 @@ public class pcd_home extends javax.swing.JFrame {
         jTextField5.setText(Double.toString(snr));
         
         for (int v = 1; v <= size.height -4; v++){
-        for (int u = 1; u <= size.width -4; u++){
-            
-            int sum = 0;
-            int temp = 0;
-            for (int j = -1; j <= 3; j++){
-            for (int i = -1; i <= 3; i++){
-                int RGB = prosesImage2.getRGB(u + i, v + j);
-                int alpha =(RGB << 24) & 0xFF;
-                int red = (RGB >> 16) & 0xFF;
-                temp = alpha;
-                sum = sum + red;
+            for (int u = 1; u <= size.width -4; u++){
+
+                int sum = 0;
+                int temp = 0;
+                for (int j = -1; j <= 3; j++){
+                    for (int i = -1; i <= 3; i++){
+                        int RGB = prosesImage2.getRGB(u + i, v + j);
+                        int alpha =(RGB << 24) & 0xFF;
+                        int red = (RGB >> 16) & 0xFF;
+                        temp = alpha;
+                        sum = sum + red;
+                    }    
+                }
+                int q = (int) Math.round(sum / 25.0);
+                int gray2 = temp | q << 16 | q << 8 | q;
+                prosesImage3.setRGB(u, v, gray2);
+                Sn2 = Sn2 + Math.abs(q - avg);
             }    
-          }
-            int q = (int) Math.round(sum / 25.0);
-            int gray2 = temp | q << 16 | q << 8 | q;
-            prosesImage3.setRGB(u, v, gray2);
-            Sn2 = Sn2 + Math.abs(q - avg);
-        }    
-      }
+        }
         pcd_ctrl.set_noise_reduc(prosesImage3);
         new pcd_ctrl().noise_reduc();
         double snr2 = 10*Math.log10(Ss/Sn2);
@@ -1411,6 +1422,8 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
