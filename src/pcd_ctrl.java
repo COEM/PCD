@@ -3,17 +3,27 @@
  */
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class pcd_ctrl {
-    static String gambar;
+    static String gambar,gambar2;
     static BufferedImage prosesImage;
     static double noise;
     static int c;
+    private static FileInputStream fis;
     public static String getGambar() { 
         return gambar;
+    }
+    
+    public static String getGambar2() { 
+        return gambar2;
     }
     
     public static BufferedImage get_noise_reduc() { 
@@ -41,6 +51,10 @@ public class pcd_ctrl {
     
     public static String setGambar(String x) {
         return gambar = x; 
+    }
+    
+    public static String setGambar2(String x){
+       return gambar2 = x;
     }
     public void start() {
         if (gambar==null) {
