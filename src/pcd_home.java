@@ -68,10 +68,12 @@ public class pcd_home extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -212,6 +214,8 @@ public class pcd_home extends javax.swing.JFrame {
 
         jLabel9.setText("SNR2");
 
+        jLabel10.setText("...");
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Open");
@@ -222,13 +226,21 @@ public class pcd_home extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setText("Open...");
+        jMenuItem2.setText("Open in New Window");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         jMenu1.add(jMenuItem2);
+
+        jMenuItem22.setText("Tester");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem22);
 
         jMenuBar1.add(jMenu1);
 
@@ -445,6 +457,7 @@ public class pcd_home extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -453,9 +466,9 @@ public class pcd_home extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                            .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +490,7 @@ public class pcd_home extends javax.swing.JFrame {
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,7 +538,9 @@ public class pcd_home extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addContainerGap())
         );
 
         pack();
@@ -1106,69 +1121,11 @@ public class pcd_home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-        // TODO add your handling code here:
-        pcd_ctrl.setGambar2("Noise_Uniform.png");
-        image = new ImageIcon(pcd_ctrl.getGambar2()).getImage();
-        size = new Dimension();
-        size.width = image.getWidth(null);
-        size.height = image.getHeight(null);
-        setPreferredSize(size);
-        int Sn = 0; int avg =0;
-        int Ss = 0;
-        int Sn2 = 0;int Ss2=0;
-        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        prosesImage2 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        prosesImage3 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        Graphics g = prosesImage.getGraphics();
-        g.drawImage(image, 0, 0, null);
-        
-        for (int x = 0; x < size.width; x++) {
-            for (int y = 0; y < size.height; y++) {
-                int RGB = prosesImage.getRGB(x, y);
-                int alpha = (RGB << 24) & 0xFF;
-                int red = (RGB >> 16) & 0xFF;
-                int green = (RGB >> 8) & 0xFF;
-                int blue = (RGB >> 0) & 0xFF;
-                avg = (red + green + blue) / 3;
-                double r = Math.random();
-                double p = Double.parseDouble(jTextField4.getText());
-                int avg2 = (int)(avg+r*256*p);
-                if (avg2>256)
-                        avg2 = 255;
-                int gray = alpha | avg2 << 16 | avg2 << 8 | avg2;
-                
-                prosesImage2.setRGB(x, y, gray);
-                Sn = Sn + Math.abs(avg2-avg);
-                Ss = Ss + Math.abs(avg);
-            }
-        }
-        double snr = 10*Math.log10(Ss/Sn);
-        jTextField5.setText(Double.toString(snr));
-        
-        for (int v = 1; v <= size.height -2; v++){
-        for (int u = 1; u <= size.width -2; u++){
-            
-            int sum = 0;
-            int temp = 0;
-            for (int j = -1; j <= 1; j++){
-            for (int i = -1; i <= 1; i++){
-                int RGB = prosesImage2.getRGB(u + i, v + j);
-                int alpha =(RGB << 24) & 0xFF;
-                int red = (RGB >> 16) & 0xFF;
-                temp = alpha;
-                sum = sum + red;
-            }    
-          }
-            int q = (int) Math.round(sum / 9.0);
-            int gray2 = temp | q << 16 | q << 8 | q;
-            prosesImage3.setRGB(u, v, gray2);
-            Sn2 = Sn2 + Math.abs(q - avg);
-        }    
-      }
-        pcd_ctrl.set_noise_reduc(prosesImage3);
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        pcd_ctrl.set_noise_reduc(pcd_process.get_noise_reduct(3));
         new pcd_ctrl().noise_reduc();
-        double snr2 = 10*Math.log10(Ss/Sn2);
-        jTextField6.setText(Double.toString(snr2));
+        jTextField5.setText(Double.toString(pcd_filter.getSnr()));
+        jTextField6.setText(Double.toString(pcd_filter.getSnr2()));
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
@@ -1190,70 +1147,20 @@ public class pcd_home extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
-        // TODO add your handling code here:
-        pcd_ctrl.setGambar2("Noise_Uniform.png");
-        image = new ImageIcon(pcd_ctrl.getGambar2()).getImage();
-        size = new Dimension();
-        size.width = image.getWidth(null);
-        size.height = image.getHeight(null);
-        setPreferredSize(size);
-        int Sn = 0; int avg =0;
-        int Ss = 0;
-        int Sn2 = 0;int Ss2=0;
-        prosesImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        prosesImage2 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        prosesImage3 = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_RGB);
-        Graphics g = prosesImage.getGraphics();
-        g.drawImage(image, 0, 0, null);
-        
-        for (int x = 0; x < size.width; x++) {
-            for (int y = 0; y < size.height; y++) {
-                int RGB = prosesImage.getRGB(x, y);
-                int alpha = (RGB << 24) & 0xFF;
-                int red = (RGB >> 16) & 0xFF;
-                int green = (RGB >> 8) & 0xFF;
-                int blue = (RGB >> 0) & 0xFF;
-                avg = (red + green + blue) / 3;
-                double r = Math.random();
-                double p = Double.parseDouble(jTextField4.getText());
-                int avg2 = (int)(avg+r*256*p);
-                if (avg2>256)
-                        avg2 = 255;
-                int gray = alpha | avg2 << 16 | avg2 << 8 | avg2;
-                
-                prosesImage2.setRGB(x, y, gray);
-                Sn = Sn + Math.abs(avg2-avg);
-                Ss = Ss + Math.abs(avg);
-            }
-        }
-        double snr = 10*Math.log10(Ss/Sn);
-        jTextField5.setText(Double.toString(snr));
-        
-        for (int v = 1; v <= size.height -4; v++){
-            for (int u = 1; u <= size.width -4; u++){
-
-                int sum = 0;
-                int temp = 0;
-                for (int j = -1; j <= 3; j++){
-                    for (int i = -1; i <= 3; i++){
-                        int RGB = prosesImage2.getRGB(u + i, v + j);
-                        int alpha =(RGB << 24) & 0xFF;
-                        int red = (RGB >> 16) & 0xFF;
-                        temp = alpha;
-                        sum = sum + red;
-                    }    
-                }
-                int q = (int) Math.round(sum / 25.0);
-                int gray2 = temp | q << 16 | q << 8 | q;
-                prosesImage3.setRGB(u, v, gray2);
-                Sn2 = Sn2 + Math.abs(q - avg);
-            }    
-        }
-        pcd_ctrl.set_noise_reduc(prosesImage3);
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        pcd_ctrl.set_noise_reduc(pcd_process.get_noise_reduct(5));
         new pcd_ctrl().noise_reduc();
-        double snr2 = 10*Math.log10(Ss/Sn2);
-        jTextField6.setText(Double.toString(snr2));
+        jTextField5.setText(Double.toString(pcd_filter.getSnr()));
+        jTextField6.setText(Double.toString(pcd_filter.getSnr2()));
     }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+        pcd_ctrl.setNoise(Double.parseDouble(jTextField4.getText()));
+        pcd_ctrl.set_noise_reduc(pcd_process.get_noise_reduct(3));
+        new pcd_ctrl().noise_reduc();
+        jTextField5.setText(Double.toString(pcd_filter.getSnr()));
+        jTextField6.setText(Double.toString(pcd_filter.getSnr2()));
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1263,7 +1170,6 @@ public class pcd_home extends javax.swing.JFrame {
             jLabel4.setSize(370, 270);
             jLabel5.setSize(370, 270);
         }
-        //System.out.println(jLabel4.getSize());
     }
     
     public void drawHistogram(BufferedImage test){
@@ -1416,6 +1322,7 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1447,6 +1354,7 @@ public class pcd_home extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;

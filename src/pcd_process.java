@@ -41,6 +41,10 @@ public class pcd_process {
         return pcd_filter.rgb_to_gs(a, b, c);
     }
     
+    public static BufferedImage get_noise_reduct(int x){
+        return pcd_filter.noise_reduct(x);
+    }
+    
     public static void saveImg_png(BufferedImage x, String name){
         try {
             ImageIO.write(x, "png", new File(name));

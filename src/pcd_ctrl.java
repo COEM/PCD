@@ -5,9 +5,6 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,6 +22,7 @@ public class pcd_ctrl {
     public static String getGambar2() { 
         return gambar2;
     }
+    
     
     public static BufferedImage get_noise_reduc() { 
         return prosesImage;
