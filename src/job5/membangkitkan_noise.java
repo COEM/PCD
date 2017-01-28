@@ -5,7 +5,6 @@
  */
 package job5;
 
-import job4.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -88,6 +87,10 @@ public class membangkitkan_noise extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
+        zoom4 = new javax.swing.JSlider();
+        zoomdes4 = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        image4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -112,6 +115,7 @@ public class membangkitkan_noise extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem17 = new javax.swing.JMenuItem();
+        jMenuItem18 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -297,6 +301,25 @@ public class membangkitkan_noise extends javax.swing.JFrame {
 
         jLabel4.setText("Noise");
 
+        zoom4.setMaximum(400);
+        zoom4.setMinimum(1);
+        zoom4.setValue(1);
+        zoom4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                zoom4StateChanged(evt);
+            }
+        });
+
+        zoomdes4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                zoomdes4ActionPerformed(evt);
+            }
+        });
+
+        image4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        image4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jScrollPane4.setViewportView(image4);
+
         jMenu1.setText("File");
 
         jMenuItem1.setText("Open");
@@ -455,6 +478,14 @@ public class membangkitkan_noise extends javax.swing.JFrame {
         });
         jMenu6.add(jMenuItem17);
 
+        jMenuItem18.setText("Filter Rata-rata 5x5");
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem18);
+
         jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
@@ -484,34 +515,39 @@ public class membangkitkan_noise extends javax.swing.JFrame {
                             .addComponent(jTextField1)
                             .addComponent(jTextField2)
                             .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(zoom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(zoomdes2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField5)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4)
+                        .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(zoom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(zoomdes2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton9)
-                            .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                            .addComponent(jTextField6))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(zoom4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(zoomdes4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 156, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -521,27 +557,34 @@ public class membangkitkan_noise extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(zoom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(zoom2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(zoomdes1)
-                            .addComponent(zoomdes2))
+                            .addComponent(zoomdes2)
+                            .addComponent(zoom4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(zoomdes4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -1879,8 +1922,10 @@ public class membangkitkan_noise extends javax.swing.JFrame {
 
         if (zoom2.getValue() == 1) {
             zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            zoom4.setValue(Integer.parseInt(zoomdes1.getText()));
         } else {
             zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            zoom4.setValue(Integer.parseInt(zoomdes2.getText()));
         }
 
         prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
@@ -1910,7 +1955,7 @@ public class membangkitkan_noise extends javax.swing.JFrame {
                 Ss = Ss + Math.abs(avg);
             }
         }
-        image2.setIcon(new ImageIcon(prosesimage));
+        image2.setIcon(new ImageIcon(prosesimage2));
         double snr = 10 * Math.log10(Ss / Sn);
         jTextField5.setText(Double.toString(snr));
 
@@ -1933,19 +1978,106 @@ public class membangkitkan_noise extends javax.swing.JFrame {
                 Sn2 = Sn2 + Math.abs(q - avg);
             }
         }
-        if (zoom3.getValue() == 1) {
-            zoom3.setValue(Integer.parseInt(zoomdes1.getText()));
-        } else {
-            zoom3.setValue(Integer.parseInt(zoomdes2.getText()));
-        }
-        jFrame1.setVisible(true);
-        image3.setEnabled(true);
-        zoom3.setEnabled(true);
-        zoomdes3.setEnabled(true);
-        image3.setIcon(new ImageIcon(prosesimage3));
+        
+        image4.setIcon(new ImageIcon(prosesimage3));
         double snr2 = 10*Math.log10(Ss/Sn2);
         jTextField6.setText(Double.toString(snr2));
     }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void zoom4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_zoom4StateChanged
+        // TODO add your handling code here:
+        prosesimage = new BufferedImage(size.width * zoom4.getValue() / 100, size.height * zoom4.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+        Graphics g = prosesimage.getGraphics();
+        g.drawImage(image, 0, 0, size.width * zoom4.getValue() / 100, size.height * zoom4.getValue() / 100, null);
+        zoomdes4.setText(Integer.toString(zoom4.getValue()));
+        image4.setIcon(new ImageIcon(prosesimage));
+    }//GEN-LAST:event_zoom4StateChanged
+
+    private void zoomdes4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_zoomdes4ActionPerformed
+        // TODO add your handling code here:
+        zoom4.setValue(Integer.parseInt(zoomdes4.getText()));
+    }//GEN-LAST:event_zoomdes4ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+        // TODO add your handling code here:
+        image2.setEnabled(true);
+        zoom2.setEnabled(true);
+        zoomdes2.setEnabled(true);
+        image = new ImageIcon(sumberGambar).getImage();
+        size = new Dimension();
+        size.width = image.getWidth(null);
+        size.height = image.getHeight(null);
+        setPreferredSize(size);
+
+        int Sn = 0;
+        int avg = 0;
+        int Ss = 0;
+        int Sn2 = 0;
+        int Ss2 = 0;
+
+        if (zoom2.getValue() == 1) {
+            zoom2.setValue(Integer.parseInt(zoomdes1.getText()));
+            zoom4.setValue(Integer.parseInt(zoomdes1.getText()));
+        } else {
+            zoom2.setValue(Integer.parseInt(zoomdes2.getText()));
+            zoom4.setValue(Integer.parseInt(zoomdes2.getText()));
+        }
+
+        prosesimage = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+        prosesimage2 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+        prosesimage3 = new BufferedImage(size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, BufferedImage.TYPE_INT_RGB);
+
+        Graphics g = prosesimage.getGraphics();
+        g.drawImage(image, 0, 0, size.width * zoom2.getValue() / 100, size.height * zoom2.getValue() / 100, null);
+
+        for (int x = 0; x < size.width * zoom2.getValue() / 100; x++) {
+            for (int y = 0; y < size.height * zoom2.getValue() / 100; y++) {
+                int RGB = prosesimage.getRGB(x, y);
+                int alpha = (RGB << 24) & 0xFF;
+                int red = (RGB >> 16) & 0xFF;
+                int green = (RGB >> 8) & 0xFF;
+                int blue = (RGB >> 0) & 0xFF;
+                avg = (red + green + blue) / 3;
+                double r = Math.random();
+                double p = Double.parseDouble(jTextField4.getText());
+                int avg2 = (int) (avg + r * 256 * p);
+                if (avg2 > 256) {
+                    avg = 255;
+                }
+                int gray = alpha | avg2 << 16 | avg2 << 8 | avg2;
+                prosesimage2.setRGB(x, y, gray);
+                Sn = Sn + Math.abs(avg2 - avg);
+                Ss = Ss + Math.abs(avg);
+            }
+        }
+        image2.setIcon(new ImageIcon(prosesimage2));
+        double snr = 10 * Math.log10(Ss / Sn);
+        jTextField5.setText(Double.toString(snr));
+
+        for (int v = 1; v <= size.height * zoom2.getValue() / 100 - 4; v++) {
+            for (int u = 1; u <= size.width * zoom2.getValue() / 100 - 4; u++) {
+                int sum = 0;
+                int temp = 0;
+                for (int j = -1; j <= 3; j++) {
+                    for (int i = -1; i <= 3; i++) {
+                        int RGB = prosesimage2.getRGB(u + i, v + j);
+                        int alpha = (RGB << 24) & 0xFF;
+                        int red = (RGB >> 16) & 0xFF;
+                        temp = alpha;
+                        sum = sum +red;
+                    }
+                }
+                int q = (int) Math.round(sum / 25.0);
+                int gray2 = temp | q << 16 | q << 8 | q;
+                prosesimage3.setRGB(u, v, gray2);
+                Sn2 = Sn2 + Math.abs(q - avg);
+            }
+        }
+        
+        image4.setIcon(new ImageIcon(prosesimage3));
+        double snr2 = 10*Math.log10(Ss/Sn2);
+        jTextField6.setText(Double.toString(snr2));
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
 
     void drawHistogram() {
         BufferedImage test = null;
@@ -2095,6 +2227,7 @@ public class membangkitkan_noise extends javax.swing.JFrame {
     private javax.swing.JLabel image1;
     private javax.swing.JLabel image2;
     private javax.swing.JLabel image3;
+    private javax.swing.JLabel image4;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -2125,6 +2258,7 @@ public class membangkitkan_noise extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
+    private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
@@ -2139,6 +2273,7 @@ public class membangkitkan_noise extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -2148,8 +2283,10 @@ public class membangkitkan_noise extends javax.swing.JFrame {
     private javax.swing.JSlider zoom1;
     private javax.swing.JSlider zoom2;
     private javax.swing.JSlider zoom3;
+    private javax.swing.JSlider zoom4;
     private javax.swing.JTextField zoomdes1;
     private javax.swing.JTextField zoomdes2;
     private javax.swing.JTextField zoomdes3;
+    private javax.swing.JTextField zoomdes4;
     // End of variables declaration//GEN-END:variables
 }
